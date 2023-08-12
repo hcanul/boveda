@@ -17,4 +17,9 @@ class Cities extends Model
     {
         return $this->hasMany(Administrator::class);
     }
+
+    public function adviser()
+    {
+        return $this->hasMany(Adviser::class);
+    }
 }

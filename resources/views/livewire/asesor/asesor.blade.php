@@ -139,7 +139,7 @@
                         {{$item->clientesf}}
                     </td>
                     <td class="px-6 py-4">
-                        {{$tiem->srfinal}}
+                        {{$item->srfinal}}
                     </td>
                     <td class="px-6 py-4">
                         {{$item->clientesf}}
@@ -170,6 +170,15 @@
                     </td>
                     <td class="px-6 py-4">
                         {{$item->bonoexcelencia}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{$item->base}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{$item->rmetac}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{$item->redsr}}
                     </td>
                     <td class="px-6 py-4">
                         {{$item->bonofina}}
@@ -234,23 +243,23 @@
             // noty(msg); // Supongo que noty es una función definida en otro lugar de tu código
         }
 
-        function onTypeSucursal( categor){
-            document.getElementById('typesucursal').value = categor;
-        }
+        // function onTypeSucursal( categor){
+        //     document.getElementById('typesucursal').value = categor;
+        // }
 
-        function onCategoSucursal(typesu){
-            document.getElementById('category_id').value = typesu;
-        }
+        // function onCategoSucursal(typesu){
+        //     document.getElementById('category_id').value = typesu;
+        // }
 
-        function onDiferenciaClientes(cant){
-            document.getElementById('diferenciaclientes').value = cant[0];
-            document.getElementById('bonoclientes').value = cant[1];
-        }
+        // function onDiferenciaClientes(cant){
+        //     document.getElementById('diferenciaclientes').value = cant[0];
+        //     document.getElementById('bonoclientes').value = cant[1];
+        // }
 
-        function onColocadoReal(coloca){
-            document.getElementById('bonoccolocacion').value = coloca[0];
-            document.getElementById('bonofina').value = coloca[1];
-        }
+        // function onColocadoReal(coloca){
+        //     document.getElementById('bonoccolocacion').value = coloca[0];
+        //     document.getElementById('bonofina').value = coloca[1];
+        // }
 
         window.livewire.on('item-added', onItemAdded);
         window.livewire.on('item-updated', onItemUpdated);
@@ -258,10 +267,10 @@
         window.livewire.on('hide-modal', hideModal);
         window.livewire.on('show-modal', showModal);
 
-        window.livewire.on('catego', onTypeSucursal);
-        window.livewire.on('typesuc', onCategoSucursal);
-        window.livewire.on('dife', onDiferenciaClientes);
-        window.livewire.on('colocado', onColocadoReal);
+        // window.livewire.on('catego', onTypeSucursal);
+        // window.livewire.on('typesuc', onCategoSucursal);
+        // window.livewire.on('dife', onDiferenciaClientes);
+        // window.livewire.on('colocado', onColocadoReal);
 
     });
 

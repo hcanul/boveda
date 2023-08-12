@@ -17,4 +17,9 @@ class Employes extends Model
     {
         return $this->hasMany(Administrators::class);
     }
+
+    public function adviser()
+    {
+        return $this->hasMany(Adviser::class);
+    }
 }

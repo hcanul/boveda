@@ -11,5 +11,15 @@ class Adviser extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [ 'city_id', 'employes_id', 'asesores', 'typesucursal', 'category_id', 'clientesi', 'carterainicio', 'clientesf', 'colocadoreal', 'diferenciaclientes', 'bonoclientes', 'bonoccolocacion', 'bonofina' ];
+    protected $fillable = [  'city_id', 'employes_id', 'clientesi', 'carterainicio', 'srinicio', 'porsrinicio', 'clientesf', 'carterafinal', 'srfinal', 'porsrfinal', 'category_adviser_id', 'metacoloca', 'colocadoreal', 'poralcancemetacoloca', 'diferenciaclientes', 'diferenciacartera', 'bonoclientes', 'bonoccolocacion', 'bonoexcelencia', 'base', 'rmetac', 'redsr', 'bonofina' ];
+
+    public function city()
+    {
+        return $this->belongsTo(Cities::class);
+    }
+
+    public function employes()
+    {
+        return $this->belongsTo(Employes::class);
+    }
 }

@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('employes', function (Blueprint $table) {
-            $table->integer('typeemployes_id');
+        Schema::table('category_advisers', function (Blueprint $table) {
+            $table->float('pagoinc', 10, 4);
+            $table->float('poralgo', 10, 4);
         });
     }
 
@@ -21,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('employes', function (Blueprint $table) {
-            $table->dropColumn('typeemplyes_id');
+        Schema::table('category_advisers', function (Blueprint $table) {
+            $table->dropColumn('pagoinc');
+            $table->dropColumn('poralgo');
         });
     }
 };

@@ -22,7 +22,9 @@ class CategoryAdviserSeeder extends Seeder
             'bonoexcelencia' => 0,
             'transporte' => 1000,
             'meta' => 100,
-            'porpago' => 100
+            'porpago' => 100,
+            'pagoinc' => 1,
+            'poralgo' => 0.01
         ]);
 
         CategoryAdviser::create([
@@ -34,7 +36,9 @@ class CategoryAdviserSeeder extends Seeder
             'bonoexcelencia' => 1000,
             'transporte' => 2000,
             'meta' => 95,
-            'porpago' => 100
+            'porpago' => 100,
+            'pagoinc' => 0.75,
+            'poralgo' => 0.015
         ]);
 
         CategoryAdviser::create([
@@ -46,7 +50,9 @@ class CategoryAdviserSeeder extends Seeder
             'bonoexcelencia' => 1000,
             'transporte' => 2000,
             'meta' => 90,
-            'porpago' => 100
+            'porpago' => 100,
+            'pagoinc' => 0.50,
+            'poralgo' => 0.02
         ]);
 
         CategoryAdviser::create([
@@ -58,7 +64,9 @@ class CategoryAdviserSeeder extends Seeder
             'bonoexcelencia' => 2000,
             'transporte' => 2000,
             'meta' => 90,
-            'porpago' => 100
+            'porpago' => 100,
+            'pagoinc' => 0,
+            'poralgo' => 0.02
         ]);
     }
 }
