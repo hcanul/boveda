@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # boveda
 creación de incentivos online
 =======
