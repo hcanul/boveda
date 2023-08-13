@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryManagerSeed::class);
         $this->call(CategoryRegionalSeed::class);
         $this->call(TypeemployeSeed::class);
+        $this->call(RolesTableSeeder::class);
+        $this->call(AssingRoleTousersSeeder::class);
     }
 }
