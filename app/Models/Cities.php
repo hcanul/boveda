@@ -22,4 +22,18 @@ class Cities extends Model
     {
         return $this->hasMany(Adviser::class);
     }
+
+    public function coordinator()
+    {
+        return $this->hasMany(Coordinator::class);
+    }
+    public function manager()
+    {
+        return $this->hasMany(Manager::class);
+    }
+
+    public function regional()
+    {
+        return $this->hasMany(Regional::class);
+    }
 }

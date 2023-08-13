@@ -45,6 +45,12 @@ class EmployesSeeder extends Seeder
         ]);
 
         Employes::create([
+            'name' => 'JUAN CARLOS CAAMAL CANO',
+            'city_id' => 1,
+            'typeemployes_id' => 3
+        ]);
+
+        Employes::create([
             'name' => 'INGRID BRITO ESTRELLA',
             'city_id' => 2,
             'typeemployes_id' => 1

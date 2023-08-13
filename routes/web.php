@@ -9,10 +9,13 @@ use App\Http\Livewire\Categorycoordinator\CategoryCordinatorController;
 use App\Http\Livewire\CategoryManager\CategoryManagerController;
 use App\Http\Livewire\CategoryRegional\CategoryRegionalController;
 use App\Http\Livewire\Coins\CoinsController;
+use App\Http\Livewire\Coordinator\CoordinatorController;
 use App\Http\Livewire\Dashboard\Dashboard;
+use App\Http\Livewire\Manager\ManagerController;
 use App\Http\Livewire\Morelos\MorelosController;
 use App\Http\Livewire\Playa1\Playa1Controller;
 use App\Http\Livewire\Playa2\Playa2Controller;
+use App\Http\Livewire\Regional\RegionalController;
 use App\Http\Livewire\Tulum\TulumController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -59,5 +62,8 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
     Route::group(['prefix' => 'Incentivos'], function(){
         Route::get('Adminstrators', AdministratorController::class)->name('indexAdministrators');
         Route::get('Asesores', AsesorController::class)->name('indexAsesores');
+        Route::get('Coordinadores', CoordinatorController::class)->name('indexCoordinadores');
+        Route::get('Gerentes', ManagerController::class)->name('indexGerentes');
+        Route::get('Regionales', RegionalController::class)->name('indexRegionales');
     });
 });
