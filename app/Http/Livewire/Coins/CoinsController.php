@@ -25,7 +25,6 @@ class CoinsController extends Component
         'value.required' => 'El valor es requerido',
     ];
 
-
     public function mount()
     {
         $this->type = 'Elegir';

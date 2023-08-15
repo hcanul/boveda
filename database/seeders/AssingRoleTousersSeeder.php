@@ -29,8 +29,12 @@ class AssingRoleTousersSeeder extends Seeder
         $role->givePermissionTo($permiso3);
         $role->givePermissionTo($permiso4);
         $role->givePermissionTo($permiso5);
-        $users = User::where('role_id', '=', '1')->first();
-        $users->assignRole($role);
+        $users = User::where('role_id', '=', '1')->get();
+        foreach ($users as  $user)
+        {
+            $user->assignRole($role);
+        }
+
 
 
         $role1 = Role::where('name', 'administrador')->first();
