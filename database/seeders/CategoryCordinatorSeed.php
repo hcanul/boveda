@@ -15,6 +15,7 @@ class CategoryCordinatorSeed extends Seeder
     {
         CategoryCordinator::create([
             'name' => 'Desarrollo',
+            'type' => 'A',
             'min'=> 0,
             'max'=> 1200000,
             'porcpago' => 0.008,
@@ -27,6 +28,7 @@ class CategoryCordinatorSeed extends Seeder
 
         CategoryCordinator::create([
             'name' => 'Junior',
+            'type' => 'A',
             'min'=> 1200001,
             'max'=> 2400000,
             'porcpago' => 0.009,
@@ -39,6 +41,7 @@ class CategoryCordinatorSeed extends Seeder
 
         CategoryCordinator::create([
             'name' => 'Senior',
+            'type' => 'A',
             'min'=> 2400001,
             'max'=> 3600000,
             'porcpago' => 0.010,
@@ -51,6 +54,7 @@ class CategoryCordinatorSeed extends Seeder
 
         CategoryCordinator::create([
             'name' => 'Master',
+            'type' => 'A',
             'min'=> 3600001,
             'max'=> 9999999,
             'porcpago' => 0.011,

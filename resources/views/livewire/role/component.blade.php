@@ -1,4 +1,7 @@
 <div>
+    <div class="pb-4 font-medium text-gray-900 whitespace-nowrap dark:text-white justify-self-auto">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{{$componentName}} | {{$pageTitle}}</h3>
+    </div>
     <div class="flex items-center justify-between pb-4 bg-white ma-3 dark:bg-gray-900">
         <div class="justify-self-auto">
             @include('common.search')
@@ -77,7 +80,7 @@
         </table>
     </div>
     {{ $data->links()}}
-    @include('livewire.roles.form')
+    @include('livewire.role.form')
 </div>
 <script>
     function Confirm(id)

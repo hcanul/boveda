@@ -28,6 +28,24 @@
                                 <span class="flex-1 ml-3 whitespace-nowrap">Roles</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('indexPermisos') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                <?xml version="1.0" encoding="UTF-8"?><svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 10H6C4.89543 10 4 10.8954 4 12V38C4 39.1046 4.89543 40 6 40H42C43.1046 40 44 39.1046 44 38V35.5" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 23H18" stroke="#333" stroke-width="1" stroke-linecap="round"/><path d="M10 31H34" stroke="#333" stroke-width="1" stroke-linecap="round"/><circle cx="34" cy="16" r="6" fill="none" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M44.0001 28.4187C42.0469 24.6023 38 22 34 22C30 22 28.0071 23.1329 25.9503 25" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <span class="flex-1 ml-3 whitespace-nowrap">Permisos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('indexAsignar') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                <?xml version="1.0" encoding="UTF-8"?><svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 10H6C4.89543 10 4 10.8954 4 12V38C4 39.1046 4.89543 40 6 40H42C43.1046 40 44 39.1046 44 38V35.5" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 23H18" stroke="#333" stroke-width="1" stroke-linecap="round"/><path d="M10 31H34" stroke="#333" stroke-width="1" stroke-linecap="round"/><circle cx="34" cy="16" r="6" fill="none" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M44.0001 28.4187C42.0469 24.6023 38 22 34 22C30 22 28.0071 23.1329 25.9503 25" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <span class="flex-1 ml-3 whitespace-nowrap">Asignar Permisos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('indexUsers') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 24 24"><path d="M19,4H14.82A3,3,0,0,0,9.18,4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4ZM12,4a1,1,0,1,1-1,1A1,1,0,0,1,12,4Zm7,15H5V15H19Zm0-6H5V9H19Z"/><circle cx="17" cy="11" r="1"/><circle cx="14" cy="11" r="1"/><circle cx="14" cy="17" r="1"/><circle cx="17" cy="17" r="1"/><rect x="6" y="10" width="5" height="2"/><rect x="6" y="16" width="5" height="2"/></svg>
+                                <span class="flex-1 ml-3 whitespace-nowrap">Usuarios</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

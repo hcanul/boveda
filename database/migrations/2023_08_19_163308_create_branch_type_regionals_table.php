@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('employes', function (Blueprint $table) {
-            $table->integer('typeemployes_id');
+        Schema::create('branch_type_regionals', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 2);
+            $table->integer('rangeinit');
+            $table->integer('rangefin');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -21,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('employes', function (Blueprint $table) {
-            $table->dropColumn('typeemployes_id');
-        });
+        Schema::dropIfExists('branch_type_regionals');
     }
 };

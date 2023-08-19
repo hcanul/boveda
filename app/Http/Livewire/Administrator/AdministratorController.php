@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Administrator;
 
 use App\Models\Administrators;
+use App\Models\branch_type_administrator;
 use App\Models\Categories;
 use App\Models\Cities;
 use App\Models\Employes;
@@ -119,15 +120,9 @@ class AdministratorController extends Component
 
     public function calcatego()
     {
-        if($this->asesores <= 2)
-            $this->typesucursal = 'A';
-        elseif ($this->asesores == 3)
-            $this->typesucursal = 'B';
-        elseif ($this->asesores > 3)
-            $this->typesucursal = 'C';
+        $this->typesucursal= branch_type_administrator::where('rangeinit', '<', $this->asesores)->where('rangefin', '>=', $this->asesores)->get('name')[0]->name;
 
         $this->emit('catego',$this->typesucursal);
-
     }
 
     public function caltype()

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Roles;
+namespace App\Http\Livewire\Role;
 
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
 
-class RolesController extends Component
+class RoleController extends Component
 {
     use WithPagination;
 
@@ -47,7 +47,7 @@ class RolesController extends Component
             $data = Role::orderBy('id', 'asc')->paginate($this->pagination);
         }
 
-        return view('livewire.roles.roles', ['data' => $data])
+        return view('livewire.role.component', ['data' => $data])
                     ->extends('layouts.themes.app')
                     ->section('content');
     }
@@ -59,6 +59,8 @@ class RolesController extends Component
         $this->selected_id = 0;
         $this->pageTitle = 'Listado';
         $this->componentName = 'SECCIÓN DE ROLES';
+        $this->resetValidation();
+        $this->resetPage();
     }
 
     public function Store()
@@ -74,9 +76,9 @@ class RolesController extends Component
 
     public function Editar($id)
     {
-        $region = Role::find($id);
+        $rol = Role::find($id);
 
-        $this->name = $region->name;
+        $this->name = $rol->name;
 
         $this->selected_id = $id;
     }
@@ -85,13 +87,13 @@ class RolesController extends Component
     {
         $this->validate($this->rules, $this->messages);
 
-        $regional = Role::find($this->selected_id);
+        $rol = Role::find($this->selected_id);
 
-        $regional->update(['name' => $this->name]);
+        $rol->update(['name' => $this->name]);
 
         $this->resetUI();
         session()->flash('message', 'Rol Editado con exito!');
-        $this->emit('item-updated', 'CRol Actualizado');
+        $this->emit('item-updated', 'Rol Actualizado');
     }
 
     public function Destroy(Role $role)

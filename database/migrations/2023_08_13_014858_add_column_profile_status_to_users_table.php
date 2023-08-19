@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('typeemployes', function (Blueprint $table) {
-            $table->id();
-            $table->string("name");
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('profile');
+            $table->enum('status', ['Active', 'Locked']);
         });
     }
 
@@ -24,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('typeemploye');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('profile');
+            $table->dropColumn('status');
+        });
     }
 };

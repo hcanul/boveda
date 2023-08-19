@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CategoryRegional extends Model
+class branch_type_coordinators extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [ 'name', 'type', 'min', 'max', 'porcpago', 'pagocrecliente', 'bonoexcelencia', 'transporte', 'meta', 'porpago' ];
+    protected $fillable = ['name' , 'rangeinit', 'rangefin'];
 }

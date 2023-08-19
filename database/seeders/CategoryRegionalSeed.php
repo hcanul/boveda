@@ -15,6 +15,7 @@ class CategoryRegionalSeed extends Seeder
     {
         CategoryRegional::create([
             'name' => 'Desarrollo',
+            'type' => 'A',
             'min'=> 0,
             'max'=> 4800000,
             'porcpago' => 0.001,
@@ -27,6 +28,7 @@ class CategoryRegionalSeed extends Seeder
 
         CategoryRegional::create([
             'name' => 'Junior',
+            'type' => 'A',
             'min'=> 4800001,
             'max'=> 9600000,
             'porcpago' => 0.002,
@@ -39,6 +41,7 @@ class CategoryRegionalSeed extends Seeder
 
         CategoryRegional::create([
             'name' => 'Senior',
+            'type' => 'A',
             'min'=> 9600001,
             'max'=> 14400000,
             'porcpago' => 0.003,
@@ -51,6 +54,7 @@ class CategoryRegionalSeed extends Seeder
 
         CategoryRegional::create([
             'name' => 'Master',
+            'type' => 'A',
             'min'=> 14400001,
             'max'=> 9999999,
             'porcpago' => 0.004,

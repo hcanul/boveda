@@ -11,5 +11,5 @@ class CategoryCordinator extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [ 'name', 'min', 'max', 'porcpago', 'pagocrecliente', 'bonoexcelencia', 'transporte', 'meta', 'porpago' ];
+    protected $fillable = [ 'name', 'type', 'min', 'max', 'porcpago', 'pagocrecliente', 'bonoexcelencia', 'transporte', 'meta', 'porpago' ];
 }

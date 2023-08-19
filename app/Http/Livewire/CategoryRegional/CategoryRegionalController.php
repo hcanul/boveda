@@ -10,7 +10,7 @@ class CategoryRegionalController extends Component
 {
     use WithPagination;
 
-    public $name, $min, $max, $porcpago, $pagocrecliente, $bonoexcelencia, $transporte, $meta, $porpago;
+    public $name, $type, $min, $max, $porcpago, $pagocrecliente, $bonoexcelencia, $transporte, $meta, $porpago;
 
     public $search, $selected_id, $pageTitle, $componentName;
 
@@ -18,6 +18,7 @@ class CategoryRegionalController extends Component
 
     protected $rules = [
         'name' => 'required',
+        'type' => 'required',
         'min' => 'required',
         'max' => 'required',
         'porcpago' => 'required',
@@ -30,6 +31,7 @@ class CategoryRegionalController extends Component
 
     protected $messages = [
         'name.required' => 'El valor es indispensable',
+        'type.required' => 'Debe capturar el tipo',
         'min.required' => 'El valor es indispensable',
         'max.required' => 'El valor es indispensable',
         'porcpago.required' => 'El valor es indispensable',
@@ -43,6 +45,7 @@ class CategoryRegionalController extends Component
     public function mount()
     {
         $this->name = null;
+        $this->type = null;
         $this->min = null;
         $this->max = null;
         $this->porcpago = null;
@@ -73,6 +76,7 @@ class CategoryRegionalController extends Component
     public function resetUI()
     {
         $this->name = null;
+        $this->type = null;
         $this->min = null;
         $this->max = null;
         $this->porcpago = null;
@@ -93,6 +97,7 @@ class CategoryRegionalController extends Component
 
         CategoryRegional::create([
             'name' => $this->name,
+            'type' => $this->type,
             'min' => $this->min,
             'max' => $this->max,
             'porcpago' => $this->porcpago,
@@ -114,6 +119,7 @@ class CategoryRegionalController extends Component
 
         $categoria = CategoryRegional::findOrfail($id);
         $this->name = $categoria ->name;
+        $this->type = $categoria->type;
         $this->min = $categoria ->min;
         $this->max = $categoria ->max;
         $this->porcpago = $categoria ->porcpago;
@@ -133,6 +139,7 @@ class CategoryRegionalController extends Component
 
         $categoria->update([
             'name' => $this->name,
+            'type' => $this->type,
             'min' => $this->min,
             'max' => $this->max,
             'porcpago' => $this->porcpago,

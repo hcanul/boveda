@@ -17,45 +17,52 @@ class UserSeeder extends Seeder
             'name' => 'Jaime Alberto Lopez Alonso',
             'email' => 'j_aguila_10@hotmail.com',
             'password' => bcrypt('10titan10'),
-            'role_id' => 1
+            'profile' => 'superuser',
+            'status' => 'Active'
         ]);
 
         User::create([
             'name' => 'Hugo Paulino Canul Echazarreta',
             'email' => 'cyber.frenetic@gmail.com',
             'password' => bcrypt('ha260182ha'),
-            'role_id' => 1
+            'profile' => 'superuser',
+            'status' => 'Active'
         ]);
 
         User::create([
             'name' => 'prueba1',
             'email' => 'prueba1@gmail.com',
             'password' => bcrypt('12345678'),
-            'role_id' => 2
+            'profile' => 'administrador',
+            'status' => 'Active'
         ]);
         User::create([
             'name' => 'prueba2',
             'email' => 'prueba2@gmail.com',
             'password' => bcrypt('12345678'),
-            'role_id' => 3
+            'profile' => 'asesor',
+            'status' => 'Active'
         ]);
         User::create([
             'name' => 'prueba3',
             'email' => 'prueba3@gmail.com',
             'password' => bcrypt('12345678'),
-            'role_id' => 4
+            'profile' => 'regional',
+            'status' => 'Active'
         ]);
         User::create([
             'name' => 'prueba4',
             'email' => 'prueba4@gmail.com',
             'password' => bcrypt('12345678'),
-            'role_id' => 5
+            'profile' => 'coordinador',
+            'status' => 'Active'
         ]);
         User::create([
             'name' => 'prueba5',
             'email' => 'prueba5@gmail.com',
             'password' => bcrypt('12345678'),
-            'role_id' => 6
+            'profile' => 'gerente',
+            'status' => 'Active'
         ]);
     }
 }

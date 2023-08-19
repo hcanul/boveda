@@ -16,12 +16,13 @@ class CoordinatorController extends Component
 
     public $search, $selected_id, $pageTitle, $componentName;
 
-    public  $city_id, $employes_id, $clientesi, $carterainicio, $srinicio, $porsrinicio, $clientesf, $carterafinal, $srfinal, $porsrfinal, $category_adviser_id, $metacoloca, $colocadoreal, $poralcancemetacoloca, $diferenciaclientes, $diferenciacartera, $bonoclientes, $bonoccolocacion, $bonoexcelencia, $bonofina, $base, $rmetac, $redsr;
+    public  $city_id, $typesucursal, $employes_id, $clientesi, $carterainicio, $srinicio, $porsrinicio, $clientesf, $carterafinal, $srfinal, $porsrfinal, $category_adviser_id, $metacoloca, $colocadoreal, $poralcancemetacoloca, $diferenciaclientes, $diferenciacartera, $bonoclientes, $bonoccolocacion, $bonoexcelencia, $bonofina, $base, $rmetac, $redsr;
 
     public $pagination = 10;
 
     protected $rules = [
         'city_id' => 'required',
+        'typesucursal' => 'required',
         'employes_id' => 'required',
         'clientesi' => 'required',
         'carterainicio' => 'required',
@@ -46,6 +47,7 @@ class CoordinatorController extends Component
 
     protected $messages =[
         'city_id.required' => 'El valor es necesario',
+        'typesucursal.required' => 'El valor es requerido',
         'employes_id.required' => 'El valor es necesario',
         'clientesi.required' => 'El valor es necesario',
         'carterainicio.required' => 'El valor es necesario',
@@ -75,6 +77,7 @@ class CoordinatorController extends Component
     public function mount()
     {
         $this->city_id = null;
+        $this->typesucursal = null;
         $this->employes_id = null;
         $this->clientesi = null;
         $this->carterainicio = null;
@@ -134,6 +137,7 @@ class CoordinatorController extends Component
     public function resetUI()
     {
         $this->city_id = null;
+        $this->typesucursal = null;
         $this->employes_id = null;
         $this->clientesi = null;
         $this->carterainicio = null;
@@ -168,6 +172,7 @@ class CoordinatorController extends Component
 
         Coordinator::create([
             'city_id' => $this->city_id,
+            'type_sucursal'=> $this->typesucursal,
             'employes_id' => $this->employes_id,
             'clientesi' => $this->clientesi,
             'carterainicio' => $this->carterainicio,
@@ -202,6 +207,7 @@ class CoordinatorController extends Component
         $coordi = Coordinator::find($id);
 
         $this->city_id = $coordi->city_id;
+        $this->typesucursal = $coordi->typesucursal;
         $this->employes_id = $coordi->employes_id;
         $this->clientesi = $coordi->clientesi;
         $this->carterainicio = $coordi->carterainicio;
@@ -236,6 +242,7 @@ class CoordinatorController extends Component
 
         $coordi->update([
             'city_id' => $this->city_id,
+            'typesucursal' =>$this->typesucursal,
             'employes_id' => $this->employes_id,
             'clientesi' => $this->clientesi,
             'carterainicio' => $this->carterainicio,

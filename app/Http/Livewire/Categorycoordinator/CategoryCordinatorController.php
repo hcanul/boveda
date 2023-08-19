@@ -10,7 +10,7 @@ class CategoryCordinatorController extends Component
 {
     use WithPagination;
 
-    public $name, $min, $max, $porcpago, $pagocrecliente, $bonoexcelencia, $transporte, $meta, $porpago;
+    public $name, $min, $max, $porcpago, $pagocrecliente, $bonoexcelencia, $transporte, $meta, $porpago, $type;
 
     public $search, $selected_id, $pageTitle, $componentName;
 
@@ -18,6 +18,7 @@ class CategoryCordinatorController extends Component
 
     protected $rules = [
         'name' => 'required',
+        'type' => 'required',
         'min' => 'required',
         'max' => 'required',
         'porcpago' => 'required',
@@ -30,6 +31,7 @@ class CategoryCordinatorController extends Component
 
     protected $messages = [
         'name.required' => 'El valor es indispensable',
+        'type.required' => 'Debe seleccionar un tipo',
         'min.required' => 'El valor es indispensable',
         'max.required' => 'El valor es indispensable',
         'porcpago.required' => 'El valor es indispensable',
@@ -43,6 +45,7 @@ class CategoryCordinatorController extends Component
     public function mount()
     {
         $this->name = null;
+        $this->type = null;
         $this->min = null;
         $this->max = null;
         $this->porcpago = null;
@@ -73,6 +76,7 @@ class CategoryCordinatorController extends Component
     public function resetUI()
     {
         $this->name = null;
+        $this->type = null;
         $this->min = null;
         $this->max = null;
         $this->porcpago = null;
@@ -93,6 +97,7 @@ class CategoryCordinatorController extends Component
 
         CategoryCordinator::create([
             'name' => $this->name,
+            'type' => $this->type,
             'min' => $this->min,
             'max' => $this->max,
             'porcpago' => $this->porcpago,
@@ -113,7 +118,8 @@ class CategoryCordinatorController extends Component
         $this->selected_id = $id;
 
         $categoria = CategoryCordinator::findOrfail($id);
-        $this->name = $categoria ->name;
+        $this->name = $categoria->name;
+        $this->type = $categoria->type;
         $this->min = $categoria ->min;
         $this->max = $categoria ->max;
         $this->porcpago = $categoria ->porcpago;

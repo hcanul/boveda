@@ -29,7 +29,7 @@ class AssingRoleTousersSeeder extends Seeder
         $role->givePermissionTo($permiso3);
         $role->givePermissionTo($permiso4);
         $role->givePermissionTo($permiso5);
-        $users = User::where('role_id', '=', '1')->get();
+        $users = User::where('profile', '=', 'superuser')->get();
         foreach ($users as  $user)
         {
             $user->assignRole($role);
@@ -39,7 +39,7 @@ class AssingRoleTousersSeeder extends Seeder
 
         $role1 = Role::where('name', 'administrador')->first();
         $role1->givePermissionTo($permiso1);
-        $users1 = User::where('role_id', '=', '2')->get();
+        $users1 = User::where('profile', '=', 'administrador')->get();
         foreach ($users1 as  $user)
         {
             $user->assignRole($role1);
@@ -47,28 +47,28 @@ class AssingRoleTousersSeeder extends Seeder
 
         $role2 = Role::where('name', 'asesor')->first();
         $role2->givePermissionTo($permiso2);
-        $users2 = User::where('role_id', '=', '3')->get();
+        $users2 = User::where('profile', '=', 'asesor')->get();
         foreach ($users2 as $user) {
             $user->assignRole($role2);
         }
 
         $role3 = Role::where('name', 'coordinador')->first();
         $role3->givePermissionTo($permiso3);
-        $users3 = User::where('role_id', '=', '4')->get();
+        $users3 = User::where('profile', '=', 'coordinador')->get();
         foreach ($users3 as $user) {
             $user->assignRole($role3);
         }
 
         $role4 = Role::where('name', 'gerente')->first();
         $role4->givePermissionTo($permiso4);
-        $users4 = User::where('role_id', '=', '5')->get();
+        $users4 = User::where('profile', '=', 'gerente')->get();
         foreach ($users4 as $user) {
             $user->assignRole($role4);
         }
 
         $role4 = Role::where('name', 'regional')->first();
         $role4->givePermissionTo($permiso4);
-        $users4 = User::where('role_id', '=', '6')->get();
+        $users4 = User::where('profile', '=', 'regional')->get();
         foreach ($users4 as $user) {
             $user->assignRole($role4);
         }

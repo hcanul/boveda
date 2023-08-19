@@ -19,12 +19,12 @@ return new class extends Migration
             $table->string('typesucursal', 2);
             $table->integer('category_id');
             $table->integer('clientesi');
-            $table->float('carterainicio', 10, 2);
+            $table->float('carterainicio', 20, 2);
             $table->integer('clientesf');
-            $table->float('colocadoreal');
+            $table->float('colocadoreal', 20, 2);
             $table->integer('diferenciaclientes');
-            $table->float('bonoclientes');
-            $table->float('bonoccolocacion');
+            $table->float('bonoclientes', 20, 2);
+            $table->float('bonoccolocacion', 20, 2);
             $table->float('bonofina', 12, 2);
             $table->timestamps();
             $table->softDeletes();

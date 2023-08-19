@@ -1,14 +1,28 @@
 <div>
+    <div class="pb-4 font-medium text-gray-900 whitespace-nowrap dark:text-white justify-self-auto">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{{$componentName}} | {{$pageTitle}}</h3>
+    </div>
     <div class="flex items-center justify-between pb-4 bg-white ma-3 dark:bg-gray-900">
         <div class="justify-self-auto">
-            @include('common.search')
+            <label for="default" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona un Rol</label>
+            <select wire:model="role" id="role" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected value="Elegir">Elije una opcion</option>
+                @foreach ($roles as $item)
+                    <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="justify-self-auto">
-            <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800" type="button">
-                <span class="block relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                    Crear nuevo
+            <button type="button" wire:click.prevent='SyncAll' class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                    Sincronizar Todos
                 </span>
-            </button>
+              </button>
+              <button type="button" onclick="Revocar()" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                    Revocar Todos
+                </span>
+              </button>
         </div>
     </div>
     @if (session()->has('message'))
@@ -41,50 +55,51 @@
                         ID
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Nombre
+                        PERMISO
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Guard Name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Action
+                        ROLES CON EL PERMISO
                     </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($data as $item)
+                @foreach ($permisos as $permiso)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <td class="px-6 py-4">
-                        {{$item->id}}
+                        {{$permiso->id}}
                     </td>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$item->name}}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{$item->guard_name}}
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <div class="flex items-center mb-4">
+                            <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                <input
+                                    wire:change="SyncPermiso(document.getElementById('p{{ $permiso->id }}').checked, '{{ $permiso->name }}');"
+                                    value="{{$permiso->id}}"
+                                    id="p{{$permiso->id}}"
+                                    type="checkbox"
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                    {{$permiso->checked == 1 ? 'checked':''}}
+                                    >
+                                    {{$permiso->name}}
+                            </label>
+                        </div>
                     </td>
                     <td class="px-6 py-4">
-                        <a href="javascript:void(0)" wire:click='Editar({{$item->id}})' data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon></svg>
-                        </a>
-                        <a href="javascript:void(0)" onclick='Confirm({{$item->id}})' class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5406a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                        </a>
+                        {{\App\Models\User::permission($permiso->name)->count()}}
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-    {{ $data->links()}}
-    @include('livewire.roles.form')
+    {{ $permisos->links()}}
+    {{-- @include('livewire.asignar.form') --}}
 </div>
 <script>
-    function Confirm(id)
+    function Revocar()
     {
         swal({
             title: 'CONFIRMAR',
-            text: '¿CONFIRMAS ELIMINAR EL REGISTRO?',
+            text: '¿CONFIRMAS REVOCAR TODOS LOS PERMISOS?',
             type: 'warning',
             showCancelButton: true,
             cancelBtuttonText: 'Cerrar',
@@ -93,7 +108,7 @@
             confirmButtonColor: '#3B3f5C'
         }).then( function (result){
             if (result.value){
-                window.livewire.emit('deleteRow', id)
+                window.livewire.emit('revokeall')
                 swal.close()
             }
         })

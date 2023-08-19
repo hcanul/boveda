@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Administrator\AdministratorController;
 use App\Http\Livewire\Asesor\AsesorController;
+use App\Http\Livewire\Asignar\AsignarController;
 use App\Http\Livewire\Carrillo\CarrilloController;
 use App\Http\Livewire\Category\CategoryController;
 use App\Http\Livewire\CategoryAdviser\CategoryAdviserController;
@@ -13,11 +14,13 @@ use App\Http\Livewire\Coordinator\CoordinatorController;
 use App\Http\Livewire\Dashboard\Dashboard;
 use App\Http\Livewire\Manager\ManagerController;
 use App\Http\Livewire\Morelos\MorelosController;
+use App\Http\Livewire\Permisos\PermisosController;
 use App\Http\Livewire\Playa1\Playa1Controller;
 use App\Http\Livewire\Playa2\Playa2Controller;
 use App\Http\Livewire\Regional\RegionalController;
-use App\Http\Livewire\Roles\RolesController;
+use App\Http\Livewire\Role\RoleController;
 use App\Http\Livewire\Tulum\TulumController;
+use App\Http\Livewire\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,7 +58,10 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
 
     Route::middleware(['role_or_permission:superuser'])->group(function () {
         Route::group(['prefix' => 'administrador'], function () {
-            Route::get('roles', RolesController::class)->name('indexRoles');
+            Route::get('Users', UserController::class)->name('indexUsers');
+            Route::get('roles', RoleController::class)->name('indexRoles');
+            Route::get('permisos', PermisosController::class)->name('indexPermisos');
+            Route::get('asignarpermisos', AsignarController::class)->name('indexAsignar');
         });
     });
 

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('category_cordinators', function (Blueprint $table) {
             $table->id();
             $table->string('name', 20);
+            $table->string('type', 2);
             $table->float('min', 14,4);
             $table->float('max', 14,4);
             $table->float('porcpago', 10,4);

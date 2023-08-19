@@ -338,7 +338,7 @@ class AsesorController extends Component
             $this->bonoexcelencia = 0;
         }
 
-        $this->base = $tipo[0]->meta * 0.01;
+        $this->base = $tipo[0]->meta;
 
         $this->rmetac = $this->poralcancemetacoloca >= $this->base ? $this->bonoccolocacion: 0;
 
