@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('city_id');
             $table->string('employes_id', 100);
+            $table->integer('asesores');
+            $table->string('type_sucursal', 2);
             $table->integer('clientesi');
             $table->float('carterainicio', 15, 2);
             $table->float('srinicio', 15, 2);

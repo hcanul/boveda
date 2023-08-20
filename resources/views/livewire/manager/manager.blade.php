@@ -197,7 +197,7 @@
         </table>
     </div>
     {{ $data->links()}}
-    @include('livewire.asesor.form')
+    @include('livewire.manager.form')
 </div>
 <script>
     function Confirm(id)

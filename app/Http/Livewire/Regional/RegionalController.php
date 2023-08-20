@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Regional;
 
+use App\Models\branch_type_regional;
 use App\Models\CategoryRegional;
 use App\Models\Cities;
 use App\Models\Employes;
@@ -15,13 +16,14 @@ class RegionalController extends Component
 
     public $search, $selected_id, $pageTitle, $componentName;
 
-    public  $city_id, $employes_id, $clientesi, $carterainicio, $srinicio, $porsrinicio, $clientesf, $carterafinal, $srfinal, $porsrfinal, $category_adviser_id, $metacoloca, $colocadoreal, $poralcancemetacoloca, $diferenciaclientes, $diferenciacartera, $bonoclientes, $bonoccolocacion, $bonoexcelencia, $bonofina, $base, $rmetac, $redsr;
+    public  $city_id, $employes_id, $asesores, $typesucursal, $clientesi, $carterainicio, $srinicio, $porsrinicio, $clientesf, $carterafinal, $srfinal, $porsrfinal, $category_adviser_id, $metacoloca, $colocadoreal, $poralcancemetacoloca, $diferenciaclientes, $diferenciacartera, $bonoclientes, $bonoccolocacion, $bonoexcelencia, $bonofina, $base, $rmetac, $redsr;
 
     public $pagination = 10;
 
     protected $rules = [
         'city_id' => 'required',
         'employes_id' => 'required',
+        'asesores' => 'required',
         'clientesi' => 'required',
         'carterainicio' => 'required',
         'srinicio' => 'required',
@@ -46,6 +48,7 @@ class RegionalController extends Component
     protected $messages =[
         'city_id.required' => 'El valor es necesario',
         'employes_id.required' => 'El valor es necesario',
+        'asesores.required' => 'El valor es requerido',
         'clientesi.required' => 'El valor es necesario',
         'carterainicio.required' => 'El valor es necesario',
         'srinicio.required' => 'El valor es necesario',
@@ -75,6 +78,8 @@ class RegionalController extends Component
     {
         $this->city_id = null;
         $this->employes_id = null;
+        $this->asesores = null;
+        $this->typesucursal = null;
         $this->clientesi = null;
         $this->carterainicio = null;
         $this->srinicio = null;
@@ -135,6 +140,8 @@ class RegionalController extends Component
     {
         $this->city_id = null;
         $this->employes_id = null;
+        $this->typesucursal = null;
+        $this->asesores = null;
         $this->clientesi = null;
         $this->carterainicio = null;
         $this->srinicio = null;
@@ -169,6 +176,8 @@ class RegionalController extends Component
         Regional::create([
             'city_id' => $this->city_id,
             'employes_id' => $this->employes_id,
+            'asesores' => $this->asesores,
+            'type_sucursal' => $this->typesucursal,
             'clientesi' => $this->clientesi,
             'carterainicio' => $this->carterainicio,
             'srinicio' => $this->srinicio,
@@ -203,6 +212,8 @@ class RegionalController extends Component
 
         $this->city_id = $region->city_id;
         $this->employes_id = $region->employes_id;
+        $this->asesores = $region->asesores;
+        $this->typesucursal = $region->typesucursal;
         $this->clientesi = $region->clientesi;
         $this->carterainicio = $region->carterainicio;
         $this->srinicio = $region->srinicio;
@@ -237,6 +248,8 @@ class RegionalController extends Component
         $regional->update([
             'city_id' => $this->city_id,
             'employes_id' => $this->employes_id,
+            'asesores' => $this->asesores,
+            'typesucursal' =>$this->typesucursal,
             'clientesi' => $this->clientesi,
             'carterainicio' => $this->carterainicio,
             'srinicio' => $this->srinicio,
@@ -295,7 +308,7 @@ class RegionalController extends Component
             $this->porsrfinal = 0;
         }
 
-        $todas = CategoryRegional::all();
+        $todas = CategoryRegional::whereType($this->typesucursal)->get();
 
         foreach ($todas as $key => $value) {
             if($this->carterainicio > $value->min && $this->carterainicio <= $value->max)
@@ -314,13 +327,14 @@ class RegionalController extends Component
         }
         else
         {
-            $this->poralcancemetacoloca = 0 . ' %';
+            $this->poralcancemetacoloca = 0;
         }
 
         $this->diferenciaclientes = $this->clientesf - $this->clientesi;
         $this->diferenciacartera = $this->carterafinal - $this->carterainicio;
 
-        $tipo = CategoryRegional::whereName($this->category_adviser_id)->get();
+        $tipo = CategoryRegional::whereType($this->typesucursal)->whereName($this->category_adviser_id)->get();
+
         $this->bonoclientes = $this->diferenciaclientes * $tipo[0]->pagocrecliente;
         $this->bonoccolocacion = $this->colocadoreal * $tipo[0]->porcpago;
 
@@ -333,7 +347,7 @@ class RegionalController extends Component
             $this->bonoexcelencia = 0;
         }
 
-        $this->base = $tipo[0]->meta * 0.01;
+        $this->base = $tipo[0]->meta;
 
         $this->rmetac = $this->poralcancemetacoloca >= $this->base ? $this->bonoccolocacion: 0;
 
@@ -354,5 +368,12 @@ class RegionalController extends Component
         }
 
         $this->bonofina = ($this->redsr + $this->bonoexcelencia + $this->bonoclientes) <= 0 ? 0:$this->redsr + $this->bonoexcelencia + $this->bonoclientes;
+    }
+
+    public function calcatego()
+    {
+        $this->typesucursal = branch_type_regional::where('rangeinit', '<=', $this->asesores)->where('rangefin', '>=', $this->asesores)->get('name')[0]->name;
+
+        $this->emit('catego',$this->typesucursal);
     }
 }

@@ -11,7 +11,7 @@ class Coordinator extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [  'city_id', 'employes_id', 'clientesi', 'carterainicio', 'srinicio', 'porsrinicio', 'clientesf', 'carterafinal', 'srfinal', 'porsrfinal', 'category_adviser_id', 'metacoloca', 'colocadoreal', 'poralcancemetacoloca', 'diferenciaclientes', 'diferenciacartera', 'bonoclientes', 'bonoccolocacion', 'bonoexcelencia', 'base', 'rmetac', 'redsr', 'bonofina' ];
+    protected $fillable = [  'city_id', 'asesores', 'type_sucursal', 'employes_id', 'clientesi', 'carterainicio', 'srinicio', 'porsrinicio', 'clientesf', 'carterafinal', 'srfinal', 'porsrfinal', 'category_adviser_id', 'metacoloca', 'colocadoreal', 'poralcancemetacoloca', 'diferenciaclientes', 'diferenciacartera', 'bonoclientes', 'bonoccolocacion', 'bonoexcelencia', 'base', 'rmetac', 'redsr', 'bonofina' ];
 
     public function city()
     {
