@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Livewire\Administrator\AdministratorController;
+use App\Http\Livewire\Advisers\BTAdminstratorController;
+use App\Http\Livewire\Advisers\BTCoordinadorController;
+use App\Http\Livewire\Advisers\BTManagerController;
 use App\Http\Livewire\Asesor\AsesorController;
 use App\Http\Livewire\Asignar\AsignarController;
 use App\Http\Livewire\Carrillo\CarrilloController;
@@ -14,6 +17,9 @@ use App\Http\Livewire\Coordinator\CoordinatorController;
 use App\Http\Livewire\Dashboard\Dashboard;
 use App\Http\Livewire\Manager\ManagerController;
 use App\Http\Livewire\Morelos\MorelosController;
+use App\Http\Livewire\PaySheet\Payroll\ColaboratorController;
+use App\Http\Livewire\PaySheet\Payroll\PayrollController;
+use App\Http\Livewire\PaySheet\SalaryTable\SalaryTableController;
 use App\Http\Livewire\Permisos\PermisosController;
 use App\Http\Livewire\Playa1\Playa1Controller;
 use App\Http\Livewire\Playa2\Playa2Controller;
@@ -21,6 +27,7 @@ use App\Http\Livewire\Regional\RegionalController;
 use App\Http\Livewire\Role\RoleController;
 use App\Http\Livewire\Tulum\TulumController;
 use App\Http\Livewire\User\UserController;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,6 +73,15 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
     });
 
     Route::middleware(['role_or_permission:superuser'])->group(function () {
+        Route::group(['prefix' => 'TiposSucursal'], function(){
+            Route::get('Administrador', BTAdminstratorController::class )->name('indexBranchAdmin');
+            Route::get('Coordinador', BTCoordinadorController::class )->name('indexBranchCoordi');
+            Route::get('Gerente', BTManagerController::class )->name('indexBranchManager');
+            Route::get('Regional', BTManagerController::class )->name('indexBranchRegional');
+        });
+    });
+
+    Route::middleware(['role_or_permission:superuser'])->group(function () {
         Route::group(['prefix' => 'Categories'], function(){
             Route::get('Administrators', CategoryController::class )->name('indexCategories');
             Route::get('Advisers', CategoryAdviserController::class)->name('indexAdvisers');
@@ -76,12 +92,19 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
     });
 
     Route::group(['prefix' => 'Incentivos'], function(){
-        Route::get('Adminstrators', AdministratorController::class)->name('indexAdministrators')->middleware('role_or_permission:administrador|ver todo');
-        Route::get('Asesores', AsesorController::class)->name('indexAsesores')->middleware('role_or_permission:asesor|ver todo');
-        Route::get('Coordinadores', CoordinatorController::class)->name('indexCoordinadores')->middleware('role_or_permission:coordinador|ver todo');
-        Route::get('Gerentes', ManagerController::class)->name('indexGerentes')->middleware('role_or_permission:gerente|ver todo');
-        Route::get('Regionales', RegionalController::class)->name('indexRegionales')->middleware('role_or_permission:regional|ver todo');
+        Route::get('Adminstrators', AdministratorController::class)->name('indexAdministrators')->middleware('role_or_permission:superuser|administrador');
+        Route::get('Asesores', AsesorController::class)->name('indexAsesores')->middleware('role_or_permission:superuser|asesor');
+        Route::get('Coordinadores', CoordinatorController::class)->name('indexCoordinadores')->middleware('role_or_permission:superuser|coordinador');
+        Route::get('Gerentes', ManagerController::class)->name('indexGerentes')->middleware('role_or_permission:superuser|gerente');
+        Route::get('Regionales', RegionalController::class)->name('indexRegionales')->middleware('role_or_permission:superuser|regional');
     });
 
+    Route::middleware(['role_or_permission:superuser|nomina'])->group(function () {
+        Route::group(['prefix' => 'Nomina'], function(){
+            Route::get('Colaboradores',ColaboratorController::class)->name('indexNominaColab');
+            // Route::get('Captura', PayrollController::class)->name('indexNominaCaptura');
+            // Route::get('Captura/Tables/Default/Salary', SalaryTableController::class)->name('indexNominaTableDefault');
+        });
+    });
 
 });

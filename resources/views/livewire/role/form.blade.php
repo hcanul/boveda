@@ -1,4 +1,4 @@
-@include('common.headModal')
+@include('common.modal.headModal')
 <form class="space-y-6">
     <div class="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2">
         <div>
@@ -10,4 +10,4 @@
         </div>
     <div>
 </form>
-@include('common.footerModal')
+@include('common.modal.footerModal')

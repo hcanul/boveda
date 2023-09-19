@@ -120,7 +120,7 @@ class AdministratorController extends Component
 
     public function calcatego()
     {
-        $this->typesucursal= branch_type_administrator::where('rangeinit', '<', $this->asesores)->where('rangefin', '>=', $this->asesores)->get('name')[0]->name;
+        $this->typesucursal= branch_type_administrator::where('rangeinit', '<=', $this->asesores)->where('rangefin', '>=', $this->asesores)->get('name')[0]->name;
 
         $this->emit('catego',$this->typesucursal);
     }

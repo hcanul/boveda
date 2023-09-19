@@ -36,4 +36,9 @@ class Cities extends Model
     {
         return $this->hasMany(Regional::class);
     }
+
+    public function employ2()
+    {
+        return $this->hasMany(Employ2::class);
+    }
 }
