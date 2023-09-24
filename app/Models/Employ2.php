@@ -17,4 +17,14 @@ class Employ2 extends Model
     {
         return $this->belongsTo(Cities::class);
     }
+
+    public function stsalaryemploye()
+    {
+        return $this->hasMany(STSalaryEmployee::class);
+    }
+
+    public function salaryemploye()
+    {
+        return $this->hasMany(SalaryEmployee::class);
+    }
 }

@@ -16,11 +16,13 @@ class AsignarController extends Component
 
     private $pagination = 10;
 
+    protected $queryString = ['search'];
+
     protected $listeners = ['revokeall' => 'RemoveAll'];
 
     public function mount()
     {
-        $this->pageTitle = 'LLISTADO';
+        $this->pageTitle = 'LISTADO';
         $this->componentName = 'ASIGNACIÓN DE PERMISOS';
     }
 

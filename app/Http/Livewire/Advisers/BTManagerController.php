@@ -17,6 +17,8 @@ class BTManagerController extends Component
 
     public $pagination = 10;
 
+    protected $queryString = ['search'];
+
     protected $rules = [
         'name' => 'required|min:1',
         'rangeinit' => 'required',

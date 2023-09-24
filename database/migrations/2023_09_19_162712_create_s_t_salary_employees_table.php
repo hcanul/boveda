@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('s_t_salary_employees', function (Blueprint $table) {
             $table->id();
             $table->integer('employ2_id');
-            $table->integer('salaryperiod_id');
             $table->float('salario');
             $table->float('prevsoc');
             $table->float('subsidio');

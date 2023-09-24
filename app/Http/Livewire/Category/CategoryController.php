@@ -16,6 +16,8 @@ class CategoryController extends Component
 
     private $pagination = 5;
 
+    protected $queryString = ['search'];
+
     protected $rules = [
         'name' => 'required',
         'type' => 'required',

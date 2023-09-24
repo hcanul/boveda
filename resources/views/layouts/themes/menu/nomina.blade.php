@@ -13,17 +13,23 @@
                 <span class="flex-1 ml-3 whitespace-nowrap">Colaboradores</span>
             </a>
         </li>
-        {{-- <li>
-            <a href="{{ route('indexNominaTableDefault') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                @include('layouts.themes.icons.table')
-                <span class="flex-1 ml-3 whitespace-nowrap">Default Salario</span>
+        <li>
+            <a href="{{ route('indexNominaPeriodos') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                @include('layouts.themes.icons.date')
+                <span class="flex-1 ml-3 whitespace-nowrap">Periodos</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('indexNominaCaptura') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                @include('layouts.themes.icons.paysalary')
-                <span class="flex-1 ml-3 whitespace-nowrap">Nueva Nomina</span>
+            <a href="{{ route('indexTableSalary') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                @include('layouts.themes.icons.table')
+                <span class="flex-1 ml-3 whitespace-nowrap">Tabla Salarios</span>
             </a>
-        </li> --}}
+        </li>
+        <li>
+            <a href="{{ route('indexCalculateSalary') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                @include('layouts.themes.icons.calculator')
+                <span class="flex-1 ml-3 whitespace-nowrap">Cálculo Salarios</span>
+            </a>
+        </li>
     @endcan
 </ul>

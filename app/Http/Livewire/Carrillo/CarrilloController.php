@@ -24,6 +24,8 @@ class CarrilloController extends Component
 
     public $total, $operacion, $superTotal;
 
+    protected $queryString = ['search'];
+
     protected $listeners = ['deleteRow' => 'Destroy'];
 
     private $pagination = 10;

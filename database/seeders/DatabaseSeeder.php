@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BranchTypeCoordinatorSeeder::class);
         $this->call(BranchTypeManagerSeeder::class);
         $this->call(BranchTypeRegionalSeeder::class);
+        $this->call(Employ2Seeder::class);
     }
 }

@@ -18,8 +18,9 @@ use App\Http\Livewire\Dashboard\Dashboard;
 use App\Http\Livewire\Manager\ManagerController;
 use App\Http\Livewire\Morelos\MorelosController;
 use App\Http\Livewire\PaySheet\Payroll\ColaboratorController;
-use App\Http\Livewire\PaySheet\Payroll\PayrollController;
-use App\Http\Livewire\PaySheet\SalaryTable\SalaryTableController;
+use App\Http\Livewire\PaySheet\Salary\CalculateController;
+use App\Http\Livewire\PaySheet\SalaryPeriods\SalaryPeriodsController;
+use App\Http\Livewire\PaySheet\STSalary\STSalaryController;
 use App\Http\Livewire\Permisos\PermisosController;
 use App\Http\Livewire\Playa1\Playa1Controller;
 use App\Http\Livewire\Playa2\Playa2Controller;
@@ -102,8 +103,9 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
     Route::middleware(['role_or_permission:superuser|nomina'])->group(function () {
         Route::group(['prefix' => 'Nomina'], function(){
             Route::get('Colaboradores',ColaboratorController::class)->name('indexNominaColab');
-            // Route::get('Captura', PayrollController::class)->name('indexNominaCaptura');
-            // Route::get('Captura/Tables/Default/Salary', SalaryTableController::class)->name('indexNominaTableDefault');
+            Route::get('Periodos', SalaryPeriodsController::class)->name('indexNominaPeriodos');
+            Route::get('TablaSalariosEstatica', STSalaryController::class)->name('indexTableSalary');
+            Route::get('CalculoSalarios', CalculateController::class)->name('indexCalculateSalary');
         });
     });
 

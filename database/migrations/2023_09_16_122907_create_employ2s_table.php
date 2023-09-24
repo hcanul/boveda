@@ -28,7 +28,7 @@ return new class extends Migration
             $table->date('fechaFin')->nullable();
             $table->string('departamento');
             $table->string('cargo');
-            $table->enum('activo',['Activo', 'Bloqueado'])->nullable();
+            $table->enum('activo',['ACTIVO', 'BLOQUEADO'])->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

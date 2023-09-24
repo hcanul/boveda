@@ -20,6 +20,8 @@ class AsesorController extends Component
 
     public $pagination = 10;
 
+    protected $queryString = ['search'];
+
     protected $rules = [
         'city_id' => 'required',
         'employes_id' => 'required',
