@@ -11,7 +11,7 @@ class SalaryEmployee extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [ 'employ2_id', 'salario', 'prevsoc', 'subsidio', 'descuento', 'segsoc', 'infonavit', 'workingdays' ];
+    protected $fillable = [ 'employ2_id', 'salaryperiod_id','salario', 'prevsoc', 'subsidio', 'descuento', 'segsoc', 'infonavit', 'workingdays' ];
 
     public function employ2()
     {

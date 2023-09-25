@@ -5,6 +5,8 @@ namespace App\Http\Livewire\PaySheet\Salary;
 use App\Models\Cities;
 use App\Models\Employ2;
 use App\Models\SalaryEmployee;
+use App\Models\SalaryPeriod;
+use App\Models\STSalaryEmployee;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -60,7 +62,7 @@ class CalculateController extends Component
         $this->ciudad = '';
         $this->selected_id = 0;
         $this->pageTitle = 'Listado';
-        $this->componentName = 'TABLA DE SALARRIOS ESTATICOS';
+        $this->componentName = 'NOMINA GENERACIÓN';
     }
 
     public function render()
@@ -73,18 +75,36 @@ class CalculateController extends Component
                             ->where('employ2s.city_id', '=', 1)->whereEmploy2Id($numero)->paginate($this->pagination);
                 $morelos = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
                             ->where('employ2s.city_id', '=', 2)->whereEmploy2Id($numero)->paginate($this->pagination);
+                $tulum = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                            ->where('employ2s.city_id', '=', 3)->whereEmploy2Id($numero)->paginate($this->pagination);
+                $playa = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                            ->where('employ2s.city_id', '=', 4)->whereEmploy2Id($numero)->paginate($this->pagination);
+                $cancun = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                            ->where('employ2s.city_id', '=', 5)->whereEmploy2Id($numero)->paginate($this->pagination);
             }else{
                 $carrillo = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
-                            ->where('employ2s.city_id', '=', 1)->orderBy('Salary_employees.id', 'asc')->paginate($this->pagination);
+                            ->where('employ2s.city_id', '=', 1)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
                 $morelos = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
-                            ->where('employ2s.city_id', '=', 2)->orderBy('Salary_employees.id', 'asc')->paginate($this->pagination);
+                            ->where('employ2s.city_id', '=', 2)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
+                $tulum = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                            ->where('employ2s.city_id', '=', 3)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
+                $playa = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                            ->where('employ2s.city_id', '=', 4)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
+                $cancun = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                            ->where('employ2s.city_id', '=', 5)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
             }
         }
         else{
             $carrillo = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
-                        ->where('employ2s.city_id', '=', 1)->orderBy('Salary_employees.id', 'asc')->paginate($this->pagination);
+                        ->where('employ2s.city_id', '=', 1)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
             $morelos = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
-                        ->where('employ2s.city_id', '=', 2)->orderBy('Salary_employees.id', 'asc')->paginate($this->pagination);
+                        ->where('employ2s.city_id', '=', 2)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
+            $tulum = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                        ->where('employ2s.city_id', '=', 3)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
+            $playa = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                        ->where('employ2s.city_id', '=', 4)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
+            $cancun = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                        ->where('employ2s.city_id', '=', 5)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
         }
 
         if ($this->ciudad)
@@ -96,11 +116,35 @@ class CalculateController extends Component
             $colab = Employ2::all();
         }
 
+        if($this->employ2_id)
+        {
+            try {
+                $tableSalary = STSalaryEmployee::where('employ2_id','=',$this->employ2_id)->get()[0];
+                if($tableSalary->count() > 0)
+                {
+                    $this->salario = $tableSalary->salario;
+                    $this->prevsoc = $tableSalary->prevsoc;
+                    $this->subsidio = $tableSalary->subsidio;
+                    $this->descuento = $tableSalary->descuento;
+                    $this->segsoc = $tableSalary->segsoc;
+                    $this->infonavit = $tableSalary->infonavit;
+                    $this->workingdays = $tableSalary->workingdays;
+                }
+            } catch (\Throwable $th) {
+                $this->resetUI();
+                session()->flash('delete', 'NO EXISTE INFO DE ESTE COLABORADOR!');
+                $this->emit('item-watch', 'NO EXISTE INFO DE ESTE COLABORADOR!');
+            }
+        }
+
         $cities = Cities::all();
 
         return view('livewire.pay-sheet.salary.component',[
             'carrillo' => $carrillo,
             'morelos' => $morelos,
+            'tulum' =>$tulum ,
+            'playa' => $playa,
+            'cancun' => $cancun,
             'cities' => $cities,
             'colabo' => $colab,
         ])
@@ -122,7 +166,7 @@ class CalculateController extends Component
         $this->ciudad = '';
         $this->selected_id = 0;
         $this->pageTitle = 'Listado';
-        $this->componentName = 'TABLA DE SALARRIOS ESTATICOS';
+        $this->componentName = 'NOMINA GENERACIÓN';
         $this->resetValidation();
         $this->resetPage();
     }
@@ -158,11 +202,51 @@ class CalculateController extends Component
             'descuento' => $this->descuento,
             'segsoc' => $this->segsoc,
             'infonavit' => $this->infonavit,
-'           workingdays' => $this->workingdays,
+            'workingdays' => $this->workingdays,
         ]);
 
         $this->resetUI();
         session()->flash('message', 'Rol Editado con exito!');
         $this->emit('item-updated', 'Rol Actualizado');
+    }
+
+    public function Store()
+    {
+        $this->validate($this->rules, $this->messages);
+
+        $periodo = SalaryPeriod::orderBy('id', 'desc')->first();
+        try {
+            $verifica = SalaryEmployee::whereEmploy2Id($this->employ2_id)->whereSalaryperiodId($periodo == null ? 1 : $periodo->id)->orderBy('id', 'desc')->first();
+            if($verifica != null)
+            {
+                $this->resetUI();
+                session()->flash('delete', 'El Salario para este colaborador ya existe en este periodo');
+                $this->emit('item-watch', 'El Salario para este colaborador ya existe en este periodo');
+                return ;
+            }
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        SalaryEmployee::create([
+            'employ2_id' => $this->employ2_id,
+            'salaryperiod_id' => $periodo == null ? 1 : $periodo->id,
+            'salario' => $this->salario,
+            'prevsoc' => $this->prevsoc,
+            'subsidio' => $this->subsidio,
+            'descuento' => $this->descuento,
+            'segsoc' => $this->segsoc,
+            'infonavit' => $this->infonavit,
+            'workingdays' => $this->workingdays,
+        ]);
+    }
+
+    public function Destroy(SalaryEmployee $salaryemployee)
+    {
+        $salaryemployee->delete();
+        session()->flash('delete', 'Colaborador Eliminado con exito!');
+        $this->emit('item-deleted', 'Colaborador Eliminado con exito');
+        $this->resetUI();
     }
 }

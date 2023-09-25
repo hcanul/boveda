@@ -3,15 +3,6 @@
         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{{$componentName}} | {{$pageTitle}}</h3>
     </div>
     <div class="flex items-center justify-between pb-4 bg-white ma-3 dark:bg-gray-900">
-        {{-- <div class="justify-self-auto">
-            <label for="search" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NOMBRE COLABORADOR</label>
-            <select name="search" id="search" wire:model='search' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="Elegir" selected>Elija a un Colaborador</option>
-                @foreach ($colabo as $item)
-                    <option value="{{$item->id}}">{{$item->name}}</option>
-                @endforeach
-            </select>
-        </div> --}}
         <div class="justify-self-auto">
             @include('common.search')
         </div>
@@ -87,13 +78,13 @@
             @include('livewire.pay-sheet.salary.morelos')
         </div>
         <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="tulum" role="tabpanel" aria-labelledby="tulum-tab">
-            <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Settings tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            @include('livewire.pay-sheet.salary.tulum')
         </div>
         <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="playa" role="tabpanel" aria-labelledby="playa-tab">
-            <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Contacts tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            @include('livewire.pay-sheet.salary.playa')
         </div>
         <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="cancun" role="tabpanel" aria-labelledby="cancun-tab">
-            <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Contacts tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            @include('livewire.pay-sheet.salary.cancun')
         </div>
     </div>
 
@@ -133,16 +124,36 @@
 
         function onItemAdded(msg) {
             hideModal();
-            // noty(msg);
+            swal({
+                title: 'Realizado',
+                text: msg,
+                type: 'success',
+            });
         }
 
         function onItemUpdated(msg) {
             hideModal();
-            // noty(msg); // Supongo que noty es una función definida en otro lugar de tu código
+            swal({
+                title: 'Atención',
+                text: msg,
+                type: 'warning',
+            });
         }
 
         function onItemDeleted(msg) {
-            // noty(msg); // Supongo que noty es una función definida en otro lugar de tu código
+            swal({
+                title: 'Atención',
+                text: msg,
+                type: 'warning',
+            });
+        }
+
+        function onItemWatch(msg){
+            swal({
+                title: 'ERROR',
+                text: msg,
+                type: 'error',
+            });
         }
 
         window.livewire.on('item-added', onItemAdded);
@@ -150,6 +161,7 @@
         window.livewire.on('item-deleted', onItemDeleted);
         window.livewire.on('hide-modal', hideModal);
         window.livewire.on('show-modal', showModal);
+        window.livewire.on('item-watch', onItemWatch);
     });
 
 </script>

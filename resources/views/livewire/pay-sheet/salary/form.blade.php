@@ -3,7 +3,7 @@
     <div class="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2">
         @if($selected_id == 0)
             <div>
-                <label for="ciudad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NOMBRE COLABORADOR</label>
+                <label for="ciudad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">OFICINAS</label>
                 <select name="ciudad" id="ciudad" wire:model='ciudad' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="Elegir" selected>Elija a una Oficina</option>
                     @foreach ($cities as $city)
