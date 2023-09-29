@@ -113,7 +113,8 @@
             cancelBtuttonText: 'Cerrar',
             cancelButtonColor: '#fff',
             confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#3B3f5C'
+            confirmButtonColor: '#3B3f5C',
+            footer: '<strong>CreceImpulso</strong>'
         }).then( function (result){
             if (result.value){
                 window.livewire.emit('deleteRow', id)

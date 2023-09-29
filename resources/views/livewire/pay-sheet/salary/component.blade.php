@@ -63,9 +63,21 @@
                 </button>
             </li>
             <li role="presentation">
+                <button class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-red-600 hover:border-gray-300 dark:hover:text-gray-300 group" id="playa2-tab" data-tabs-target="#playa2" type="button" role="tab" aria-controls="playa2" aria-selected="false">
+                    @include('layouts.themes.icons.playa')
+                    PLAYA 2
+                </button>
+            </li>
+            <li role="presentation">
                 <button class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-red-600 hover:border-gray-300 dark:hover:text-gray-300 group" id="cancun-tab" data-tabs-target="#cancun" type="button" role="tab" aria-controls="cancun" aria-selected="false">
                     @include('layouts.themes.icons.cancun')
                     CANCUN
+                </button>
+            </li>
+            <li role="presentation">
+                <button class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-red-600 hover:border-gray-300 dark:hover:text-gray-300 group" id="cancun2-tab" data-tabs-target="#cancun2" type="button" role="tab" aria-controls="cancun2" aria-selected="false">
+                    @include('layouts.themes.icons.cancun')
+                    CANCUN 2
                 </button>
             </li>
         </ul>
@@ -83,8 +95,14 @@
         <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="playa" role="tabpanel" aria-labelledby="playa-tab">
             @include('livewire.pay-sheet.salary.playa')
         </div>
+        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="playa2" role="tabpanel" aria-labelledby="playa2-tab">
+            @include('livewire.pay-sheet.salary.playa2')
+        </div>
         <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="cancun" role="tabpanel" aria-labelledby="cancun-tab">
             @include('livewire.pay-sheet.salary.cancun')
+        </div>
+        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="cancun2" role="tabpanel" aria-labelledby="cancun2-tab">
+            @include('livewire.pay-sheet.salary.cancun2')
         </div>
     </div>
 
@@ -101,7 +119,8 @@
             cancelBtuttonText: 'Cerrar',
             cancelButtonColor: '#fff',
             confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#3B3f5C'
+            confirmButtonColor: '#3B3f5C',
+            footer: '<strong>CreceImpulso</strong>'
         }).then( function (result){
             if (result.value){
                 window.livewire.emit('deleteRow', id)

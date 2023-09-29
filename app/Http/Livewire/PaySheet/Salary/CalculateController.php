@@ -79,8 +79,12 @@ class CalculateController extends Component
                             ->where('employ2s.city_id', '=', 3)->whereEmploy2Id($numero)->paginate($this->pagination);
                 $playa = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
                             ->where('employ2s.city_id', '=', 4)->whereEmploy2Id($numero)->paginate($this->pagination);
-                $cancun = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                $playa2 = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
                             ->where('employ2s.city_id', '=', 5)->whereEmploy2Id($numero)->paginate($this->pagination);
+                $cancun = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                            ->where('employ2s.city_id', '=', 6)->whereEmploy2Id($numero)->paginate($this->pagination);
+                $cancun2 = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                            ->where('employ2s.city_id', '=', 7)->whereEmploy2Id($numero)->paginate($this->pagination);
             }else{
                 $carrillo = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
                             ->where('employ2s.city_id', '=', 1)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
@@ -90,8 +94,12 @@ class CalculateController extends Component
                             ->where('employ2s.city_id', '=', 3)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
                 $playa = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
                             ->where('employ2s.city_id', '=', 4)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
-                $cancun = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                $playa2 = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
                             ->where('employ2s.city_id', '=', 5)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
+                $cancun = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                            ->where('employ2s.city_id', '=', 6)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
+                $cancun2 = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                            ->where('employ2s.city_id', '=', 7)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
             }
         }
         else{
@@ -103,8 +111,12 @@ class CalculateController extends Component
                         ->where('employ2s.city_id', '=', 3)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
             $playa = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
                         ->where('employ2s.city_id', '=', 4)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
-            $cancun = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+            $playa2 = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
                         ->where('employ2s.city_id', '=', 5)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
+            $cancun = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                        ->where('employ2s.city_id', '=', 6)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
+            $cancun2 = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
+                        ->where('employ2s.city_id', '=', 7)->orderBy('Salary_employees.id', 'desc')->paginate($this->pagination);
         }
 
         if ($this->ciudad)
@@ -144,7 +156,9 @@ class CalculateController extends Component
             'morelos' => $morelos,
             'tulum' =>$tulum ,
             'playa' => $playa,
+            'playa2' => $playa2,
             'cancun' => $cancun,
+            'cancun2' => $cancun2,
             'cities' => $cities,
             'colabo' => $colab,
         ])

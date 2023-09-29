@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NominaToPdfController;
 use App\Http\Livewire\Administrator\AdministratorController;
 use App\Http\Livewire\Advisers\BTAdminstratorController;
 use App\Http\Livewire\Advisers\BTCoordinadorController;
@@ -18,6 +19,7 @@ use App\Http\Livewire\Dashboard\Dashboard;
 use App\Http\Livewire\Manager\ManagerController;
 use App\Http\Livewire\Morelos\MorelosController;
 use App\Http\Livewire\PaySheet\Payroll\ColaboratorController;
+use App\Http\Livewire\PaySheet\PayrollPrint\PayRollController;
 use App\Http\Livewire\PaySheet\Salary\CalculateController;
 use App\Http\Livewire\PaySheet\SalaryPeriods\SalaryPeriodsController;
 use App\Http\Livewire\PaySheet\STSalary\STSalaryController;
@@ -106,6 +108,8 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
             Route::get('Periodos', SalaryPeriodsController::class)->name('indexNominaPeriodos');
             Route::get('TablaSalariosEstatica', STSalaryController::class)->name('indexTableSalary');
             Route::get('CalculoSalarios', CalculateController::class)->name('indexCalculateSalary');
+            Route::get('ImpresionSalarios', PayRollController::class)->name('indexPtintedSalary');
+            Route::get('Printer/{id}/{city}', [NominaToPdfController::class, 'Nomina'])->name('printerNomina');
         });
     });
 
