@@ -12,7 +12,7 @@ class AsignarController extends Component
 {
     use WithPagination;
 
-    public $role, $pageTitle, $componentName, $permisosSelected = [], $old_permissions = [];
+    public $role, $pageTitle, $componentName, $permisosSelected = [], $old_permissions = [], $search;
 
     private $pagination = 10;
 
@@ -22,6 +22,7 @@ class AsignarController extends Component
 
     public function mount()
     {
+        $this->search = '';
         $this->pageTitle = 'LISTADO';
         $this->componentName = 'ASIGNACIÓN DE PERMISOS';
     }

@@ -102,7 +102,7 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
         Route::get('Regionales', RegionalController::class)->name('indexRegionales')->middleware('role_or_permission:superuser|regional');
     });
 
-    Route::middleware(['role_or_permission:superuser|nomina'])->group(function () {
+    Route::middleware(['role_or_permission:superuser|nomina|ver nomina'])->group(function () {
         Route::group(['prefix' => 'Nomina'], function(){
             Route::get('Colaboradores',ColaboratorController::class)->name('indexNominaColab');
             Route::get('Periodos', SalaryPeriodsController::class)->name('indexNominaPeriodos');

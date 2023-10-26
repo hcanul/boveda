@@ -115,44 +115,44 @@ class PayRollController extends Component
 
     public function CarrilloView($id)
     {
-        $this->vistaCarrillo = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
-                                ->where('employ2s.city_id', '=', 1)->whereSalaryperiodId($id)->orderBy('Salary_employees.id', 'desc')->get();
+        $this->vistaCarrillo = SalaryEmployee::join('employ2s', 'salary_employees.employ2_id', '=', 'employ2s.id')
+                                ->where('employ2s.city_id', '=', 1)->whereSalaryperiodId($id)->orderBy('salary_employees.id', 'desc')->get();
     }
 
     public function MorelosView($id)
     {
-        $this->vistaMorelos = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
-                                ->where('employ2s.city_id', '=', 2)->whereSalaryperiodId($id)->orderBy('Salary_employees.id', 'desc')->get();
+        $this->vistaMorelos = SalaryEmployee::join('employ2s', 'salary_employees.employ2_id', '=', 'employ2s.id')
+                                ->where('employ2s.city_id', '=', 2)->whereSalaryperiodId($id)->orderBy('salary_employees.id', 'desc')->get();
     }
 
     public function TulumView($id)
     {
-        $this->vistaTulum = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
-                                ->where('employ2s.city_id', '=', 3)->whereSalaryperiodId($id)->orderBy('Salary_employees.id', 'desc')->get();
+        $this->vistaTulum = SalaryEmployee::join('employ2s', 'salary_employees.employ2_id', '=', 'employ2s.id')
+                                ->where('employ2s.city_id', '=', 3)->whereSalaryperiodId($id)->orderBy('salary_employees.id', 'desc')->get();
     }
 
     public function PlayaView($id)
     {
-        $this->vistaPlaya = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
-                                ->where('employ2s.city_id', '=', 4)->whereSalaryperiodId($id)->orderBy('Salary_employees.id', 'desc')->get();
+        $this->vistaPlaya = SalaryEmployee::join('employ2s', 'salary_employees.employ2_id', '=', 'employ2s.id')
+                                ->where('employ2s.city_id', '=', 4)->whereSalaryperiodId($id)->orderBy('salary_employees.id', 'desc')->get();
     }
 
     public function Playa2View($id)
     {
-        $this->vistaPlaya2 = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
-                                ->where('employ2s.city_id', '=', 5)->whereSalaryperiodId($id)->orderBy('Salary_employees.id', 'desc')->get();
+        $this->vistaPlaya2 = SalaryEmployee::join('employ2s', 'salary_employees.employ2_id', '=', 'employ2s.id')
+                                ->where('employ2s.city_id', '=', 5)->whereSalaryperiodId($id)->orderBy('salary_employees.id', 'desc')->get();
     }
 
     public function CancunView($id)
     {
-        $this->vistaCancun = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
-                                ->where('employ2s.city_id', '=', 6)->whereSalaryperiodId($id)->orderBy('Salary_employees.id', 'desc')->get();
+        $this->vistaCancun = SalaryEmployee::join('employ2s', 'salary_employees.employ2_id', '=', 'employ2s.id')
+                                ->where('employ2s.city_id', '=', 6)->whereSalaryperiodId($id)->orderBy('salary_employees.id', 'desc')->get();
     }
 
     public function Cancun2View($id)
     {
-        $this->vistaCancun2 = SalaryEmployee::join('employ2s', 'Salary_employees.employ2_id', '=', 'employ2s.id')
-                                ->where('employ2s.city_id', '=', 7)->whereSalaryperiodId($id)->orderBy('Salary_employees.id', 'desc')->get();
+        $this->vistaCancun2 = SalaryEmployee::join('employ2s', 'salary_employees.employ2_id', '=', 'employ2s.id')
+                                ->where('employ2s.city_id', '=', 7)->whereSalaryperiodId($id)->orderBy('salary_employees.id', 'desc')->get();
     }
 
 
