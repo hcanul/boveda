@@ -16,6 +16,9 @@ use App\Http\Livewire\CategoryRegional\CategoryRegionalController;
 use App\Http\Livewire\Coins\CoinsController;
 use App\Http\Livewire\Coordinator\CoordinatorController;
 use App\Http\Livewire\Dashboard\Dashboard;
+use App\Http\Livewire\DirGral\Coordinator\Coordinator;
+use App\Http\Livewire\DirGral\Promotores\Promotores;
+use App\Http\Livewire\DirGral\Rates\Rates;
 use App\Http\Livewire\Manager\ManagerController;
 use App\Http\Livewire\Morelos\MorelosController;
 use App\Http\Livewire\PaySheet\Payroll\ColaboratorController;
@@ -64,33 +67,31 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
             Route::get('Playa1', Playa1Controller::class)->name('indexPlaya1');
             Route::get('Playa2', Playa2Controller::class)->name('indexPlaya2');
         });
-    });
-
-    Route::middleware(['role_or_permission:superuser'])->group(function () {
         Route::group(['prefix' => 'administrador'], function () {
             Route::get('Users', UserController::class)->name('indexUsers');
             Route::get('roles', RoleController::class)->name('indexRoles');
             Route::get('permisos', PermisosController::class)->name('indexPermisos');
             Route::get('asignarpermisos', AsignarController::class)->name('indexAsignar');
         });
-    });
 
-    Route::middleware(['role_or_permission:superuser'])->group(function () {
         Route::group(['prefix' => 'TiposSucursal'], function(){
             Route::get('Administrador', BTAdminstratorController::class )->name('indexBranchAdmin');
             Route::get('Coordinador', BTCoordinadorController::class )->name('indexBranchCoordi');
             Route::get('Gerente', BTManagerController::class )->name('indexBranchManager');
             Route::get('Regional', BTManagerController::class )->name('indexBranchRegional');
         });
-    });
 
-    Route::middleware(['role_or_permission:superuser'])->group(function () {
         Route::group(['prefix' => 'Categories'], function(){
             Route::get('Administrators', CategoryController::class )->name('indexCategories');
             Route::get('Advisers', CategoryAdviserController::class)->name('indexAdvisers');
             Route::get('Coordinator', CategoryCordinatorController::class)->name('indexCoordinator');
             Route::get('Gerente', CategoryManagerController::class)->name('indexManager');
             Route::get('Regional', CategoryRegionalController::class)->name('indexRegional');
+        });
+
+        Route::group(['prefix' => 'DireccionGral'], function(){
+            Route::get('Coordinator', Coordinator::class)->name('indexCoordinator');
+            Route::get('Promotores', Promotores::class)->name('indexPromotores');
         });
     });
 
@@ -110,6 +111,12 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
             Route::get('CalculoSalarios', CalculateController::class)->name('indexCalculateSalary');
             Route::get('ImpresionSalarios', PayRollController::class)->name('indexPtintedSalary');
             Route::get('Printer/{id}/{city}', [NominaToPdfController::class, 'Nomina'])->name('printerNomina');
+        });
+    });
+
+    Route::middleware(['role_or_permission:superuser|regional|coordinador'])->group(function () {
+        Route::group(['prefix' => 'DireccionGral'], function(){
+            Route::get('Rates', Rates::class)->name('indexRates');
         });
     });
 

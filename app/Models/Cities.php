@@ -41,4 +41,9 @@ class Cities extends Model
     {
         return $this->hasMany(Employ2::class);
     }
+
+    public function coordinadores()
+    {
+        return $this->hasMany(Coordinators::class);
+    }
 }

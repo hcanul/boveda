@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BranchTypeManagerSeeder::class);
         $this->call(BranchTypeRegionalSeeder::class);
         $this->call(Employ2Seeder::class);
+        $this->call(RatesSeeder::class);
     }
 }
